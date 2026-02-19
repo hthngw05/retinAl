@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+venv/
+.env
+
+# Streamlit secrets
+.streamlit/secrets.toml
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Training files (not part of the app)
+*.ipynb
+*.csv
+splits/
+retfound_mae_DLOR_finetune/
+
+# Archives & docs
+*.zip
+*.doc
+
+# Backup copies
+app copy.py
