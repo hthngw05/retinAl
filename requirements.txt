@@ -3,7 +3,7 @@ tflite-runtime
 numpy<2.00
 pillow
 matplotlib
-opencv-python
+opencv-python-headless
 google-genai
 pandas
 streamlit-shadcn-ui
