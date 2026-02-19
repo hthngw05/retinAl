@@ -1,8 +1,19 @@
 import os
+# Load API key from Streamlit secrets (for cloud deployment)
+try:
+    import streamlit as st
+    if "GOOGLE_API_KEY" in st.secrets:
+        os.environ["GOOGLE_API_KEY"] = st.secrets["GOOGLE_API_KEY"]
+except Exception:
+    pass
 import streamlit as st
 import numpy as np
 from PIL import Image
-import tensorflow as tf
+try:
+    from tflite_runtime.interpreter import Interpreter
+except ImportError:
+    import tensorflow as tf
+    Interpreter = tf.lite.Interpreter
 import pandas as pd
 import cv2
 from google import genai
@@ -53,11 +64,11 @@ CLASS_NAMES = [
 def load_models():
     models = {"resnet": None, "densenet": None, "type": "tflite"}
     try:
-        resnet_int = tf.lite.Interpreter(model_path="aug_resnet50.tflite")
+        resnet_int = Interpreter(model_path="aug_resnet50.tflite")
         resnet_int.allocate_tensors()
         models["resnet"] = resnet_int
 
-        densenet_int = tf.lite.Interpreter(model_path="aug_densenet201.tflite")
+        densenet_int = Interpreter(model_path="aug_densenet201.tflite")
         densenet_int.allocate_tensors()
         models["densenet"] = densenet_int
 

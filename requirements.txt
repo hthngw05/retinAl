@@ -1,5 +1,5 @@
 streamlit
-tensorflow<2.11
+tflite-runtime
 numpy<2.00
 pillow
 matplotlib
